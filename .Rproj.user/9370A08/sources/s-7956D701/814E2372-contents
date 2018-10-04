@@ -1,0 +1,36 @@
+shinyUI(fluidPage(
+  titlePanel("Developing Data Products Course Project"),
+  tabsetPanel(
+    tabPanel("Application",
+             sidebarLayout(
+               sidebarPanel(
+                 checkboxGroupInput (
+                   inputId = "Region",
+                   label = regionLabel,
+                   choices = regions,
+                   selected = regions
+                 ),
+                 actionButton("selectall", selectAllLabel),
+                 actionButton("selectnone", selectNoneLabel),
+                 checkboxGroupInput (
+                   inputId = "Gender",
+                   label = genderLabel,
+                   choices = genders,
+                   selected = "Both sexes"
+                 ),
+                 actionButton("selectAllGender", selectAllLabel),
+                 actionButton("selectNoneGender", selectNoneLabel)
+               ),
+               mainPanel(
+                 h3("Change in Life Expectancy at Birth in Canada"),
+                 h4(tagList(
+                   a("Data from Statistics Canada", href = "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310011401")
+                 )),
+                 plotOutput("plot1"),
+                 em("Scroll down if necessary to see the entire table"),
+                 dataTableOutput("table")
+               )
+             )),
+    tabPanel("Instructions", "")
+  )
+))

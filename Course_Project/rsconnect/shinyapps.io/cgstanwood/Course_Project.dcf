@@ -1,0 +1,12 @@
+name: Course_Project
+title: Course_Project
+username:
+account: cgstanwood
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 483135
+bundleId: 1620868
+url: https://cgstanwood.shinyapps.io/Course_Project/
+when: 1538586791.65032
+asMultiple: FALSE
+asStatic: FALSE
