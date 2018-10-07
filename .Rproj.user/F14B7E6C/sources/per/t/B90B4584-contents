@@ -4,25 +4,91 @@ author: Christopher Stanwood
 date: 03-Oct-2018
 autosize: true
 
-First Slide
+Overview
 ========================================================
+- This application shows the expected life expectancy at birth for most of the provinces of Canada
+- It shows how the life expectancy has been steadily increasing since 1980
+- It allows the user to select which regions to see, and whether to show results for men, women, or both together
+- The results are displayed as a graph and a data table
+- The data table uses linear regression to calculate the rate at which life expectancy has been changing, and to predict the life expectancy for 2018
+- The data is from the Statistics Canada website: <https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310011401>  
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-Slide With Code
-========================================================
+Obtaining and preparing the data
+===
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, strip.white=TRUE, tidy=TRUE, message=FALSE, warning=FALSE, error=FALSE, comment=FALSE, results = FALSE)
+```
 
 ```{r}
-summary(cars)
+library(tidyverse)
+library(data.table)
+library(stats)
+library(shiny)
 ```
-
-Slide With Plot
+The data is from the Statistics Canada website: <https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310011401>  
+Read in the data with the data.table package and do some cleanup (not shown):
+```{r echo=TRUE}
+life_expectancy <-
+  data.table::fread(
+  input = "13100114.csv",
+  sep = ",",
+  header = T,
+  stringsAsFactors = F,
+  verbose = T,
+  data.table = F,
+  select = c("REF_DATE", "GEO", "Age group", "Sex", "Element", "VALUE")
+  )
+```
+```{r echo=FALSE}
+  life_expectancy <- as_tibble(life_expectancy)
+  
+  life_expectancy <-
+  life_expectancy %>% filter(`Age group` == "0 years" &
+  Element == "Life expectancy (in years) at age x (ex)") %>% select(-c(`Age group`, Element))
+  
+  life_expectancy$REF_DATE <-
+  as.integer(substr(life_expectancy$REF_DATE, 1, 4))
+  life_expectancy$VALUE <- as.numeric(life_expectancy$VALUE)
+  life_expectancy$GEO <- as.factor(life_expectancy$GEO)
+  life_expectancy$Sex <- as.factor(life_expectancy$Sex)
+```
+Create Graph
 ========================================================
+```{r echo=FALSE}
+regions <- c(
+  "Canada",
+  "British Columbia",
+  "Alberta",
+  "Saskatchewan",
+  "Manitoba",
+  "Ontario",
+  "Quebec",
+  "Nova Scotia",
+  "New Brunswick",
+  "Newfoundland and Labrador"
+)
+regionLabel<-"Select Region:"
 
-```{r, echo=FALSE}
-plot(cars)
+genders <-  c(
+  "Both" = "Both sexes",
+  "Female" = "Females", 
+  "Male" = "Males"
+)
+
+input <- list(Region=regions, Gender=genders)
+class(input) <- "Input"
+
 ```
+In server.R create the plot using the checkboxes "input$Region" and "input$Gender":
+```{r label=life_expect_plot, echo = TRUE, eval=FALSE}
+ggplot(data = filter(life_expectancy, GEO %in% input$Region & Sex %in% input$Gender), aes(x = REF_DATE, y = VALUE, color = GEO, linetype = Sex)) + scale_color_discrete(name = "Region", breaks = input$Region, labels = input$Region) + scale_linetype_discrete(name = "Gender", breaks = input$Gender, labels = input$Gender) +  geom_line(size = .5) + theme_bw() + xlab("Year") + ylab("Life Expectancy") + ylim(70, 85)
+```
+
+***
+```{r life_expect_plot, echo = FALSE, eval=TRUE}
+```
+
+
+Create Data Table
+===
+The Data Table uses the

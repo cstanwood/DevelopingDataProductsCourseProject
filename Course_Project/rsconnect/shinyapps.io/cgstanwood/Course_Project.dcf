@@ -5,8 +5,8 @@ account: cgstanwood
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 483135
-bundleId: 1620868
+bundleId: 1628404
 url: https://cgstanwood.shinyapps.io/Course_Project/
-when: 1538586791.65032
+when: 1538947686.37331
 asMultiple: FALSE
 asStatic: FALSE

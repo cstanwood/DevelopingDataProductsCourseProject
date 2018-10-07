@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4157739951",
+    "hash" : "1561692233",
     "id" : "B90B4584",
-    "lastKnownWriteTime" : 1538589598,
-    "last_content_update" : 1538589598756,
+    "lastKnownWriteTime" : 1538787147,
+    "last_content_update" : 1538787147962,
     "path" : "~/Dropbox (Central 1)/CourseraDataScience/DevelopingDataProducts/Week4_Project/Course_Pitch/Pitch.Rpres",
     "project_path" : "Course_Pitch/Pitch.Rpres",
     "properties" : {
-        "cursorPosition" : "11,10",
+        "cursorPosition" : "83,168",
         "docOutlineVisible" : "1",
-        "scrollLine" : "0"
+        "scrollLine" : "65"
     },
     "relative_order" : 2,
     "source_on_save" : false,

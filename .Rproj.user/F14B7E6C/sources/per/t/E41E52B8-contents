@@ -1,37 +1,45 @@
-Pitch
+Developing Data Products Pitch For Course Project
 ========================================================
-author: 
-date: 
+author: Christopher Stanwood
+date: 03-Oct-2018
 autosize: true
 
-First Slide
+Overview
 ========================================================
+- This application shows the expected life expectancy at birth for most of the provinces of Canada
+- It shows how the life expectancy has been steadily increasing since 1980
+- It allows the user to select which regions to see, and whether to show results for men, women, or both together
+- The results are displayed as a graph and a data table
+- The data table uses linear regression to calculate the rate at which life expectancy has been changing, and to predict the life expectancy for 2018
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+Obtaining and preparing the data
+===
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
-Slide With Code
-========================================================
 
+The data is from the Statistics Canada website: <https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310011401>  
+Read in the data with the data.table package and do some cleanup (not shown):
 
 ```r
-summary(cars)
+life_expectancy <-
+  data.table::fread(
+  input = "13100114.csv",
+  sep = ",",
+  header = T,
+  stringsAsFactors = F,
+  verbose = T,
+  data.table = F,
+  select = c("REF_DATE", "GEO", "Age group", "Sex", "Element", "VALUE")
+  )
 ```
 
-```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-```
 
-Slide With Plot
+Create Graph
 ========================================================
+In server.R, create a plot, using the checkboxes to decide what to plot:
 
-![plot of chunk unnamed-chunk-2](Pitch-figure/unnamed-chunk-2-1.png)
+
+```
+Error in filter_impl(.data, quo) : 
+  Evaluation error: object 'input' not found.
+```

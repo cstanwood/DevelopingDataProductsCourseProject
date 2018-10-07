@@ -1,7 +1,6 @@
 library(shiny)
 library(tidyverse)
 library(data.table)
-library(plotly)
 library(stats)
 
 regions <- c(

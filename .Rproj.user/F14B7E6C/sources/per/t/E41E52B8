@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "355143112",
+    "hash" : "2737654336",
     "id" : "E41E52B8",
-    "lastKnownWriteTime" : 1538589294,
-    "last_content_update" : 1538589294,
+    "lastKnownWriteTime" : 1538778214,
+    "last_content_update" : 1538778214,
     "path" : "~/Dropbox (Central 1)/CourseraDataScience/DevelopingDataProducts/Week4_Project/Course_Pitch/Pitch.md",
     "project_path" : "Course_Pitch/Pitch.md",
     "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
     },
     "relative_order" : 1,
     "source_on_save" : false,
